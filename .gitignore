@@ -1,0 +1,17 @@
+# Ambiente virtual
+venv/
+
+# Dados (a menos que você queira versioná-los)
+data
+
+# Arquivos de configuração de IDEs
+.vscode/
+.idea/
+
+# Arquivos de cache e logs
+*.pyc
+*.pyo
+__pycache__/
+
+*.db
+
