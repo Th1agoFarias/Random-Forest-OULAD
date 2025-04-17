@@ -1,11 +1,18 @@
-import pandas as pd
 from sqlalchemy import create_engine
+import pandas as pd
 
-def run_etl(db_path='data/oulad.db', sql_path='etl.sql', output_path='data/student_data.csv'):
-    engine = create_engine(f"sqlite:///{db_path}")
-    with open(sql_path, "r") as f:
-        query = f.read()
-    df = pd.read_sql_query(query, engine)
-    df.to_csv(output_path, index=False)
-    print("✅ Dataset salvo em:", output_path)
+def run_etl(db_path="data/oulad.db"):
+    egine = create_engine(f"sqlite:///{db_path}")
+    query = """
+    CREATE VIEW IF NOT EXISTS course_summary AS
+    WITH feature_student AS (
+    
+    FROM student_info si
+    left join student_assement sa
+    ON si.id_student = sa.id_student
+    group by 
+    si.id_student
+        )
 
+    SELECT * FROM feature_student
+"""
