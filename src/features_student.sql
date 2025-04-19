@@ -1,13 +1,9 @@
-DROP VIEW IF EXISTS features_student;
-
-CREATE VIEW features_student AS
 WITH student AS (
     SELECT
         si.id_student AS student_id,
         si.code_module,
         si.code_presentation,
         si.gender,
-        si.region,
         si.age_band,
         si.imd_band,
         si.highest_education,
@@ -55,6 +51,7 @@ SELECT
     r.date_registration,
     r.date_unregistration,
     r.withdrew,
+    r.days_enrolled,
     a.num_assessments,
     a.avg_score,
     a.max_score,
