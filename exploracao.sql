@@ -100,14 +100,14 @@ WHERE
 
 
 -- 12. Total de registros por tipo de atividade (comentado)
-/*
+
 SELECT 
     activity_type,
     COUNT(*) AS total_vle_entries
 FROM vle
 GROUP BY activity_type
 ORDER BY total_vle_entries DESC;
-*/
+
 
 
 -- 13. Interações por tipo de atividade por estudante
@@ -130,3 +130,6 @@ SELECT
 FROM student_vle
 GROUP BY id_student, id_site
 ORDER BY total_clicks DESC;
+
+
+

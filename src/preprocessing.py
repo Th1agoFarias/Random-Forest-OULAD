@@ -7,7 +7,7 @@ def build_preprocessing_pipeline(df):
    
     ignore_cols = ['student_id', 'date_registration', 'date_unregistration', 'withdrew']
 
-   
+
     numeric_cols = df.select_dtypes(include=['int64','float64']).columns
     numeric_features = []
 
@@ -36,4 +36,3 @@ def build_preprocessing_pipeline(df):
     ])
 
     return preprocessor
-

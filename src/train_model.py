@@ -1,10 +1,12 @@
-import pandas as pd 
+import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from  sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import pickle
+
 from preprocessing import build_preprocessing_pipeline
-from laod_features import run_features
+from load_features import run_features
+
 
 def train_model():
     df = run_features()
