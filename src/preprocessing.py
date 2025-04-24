@@ -4,13 +4,10 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
 
 def build_preprocessing_pipeline(df):
-   
     ignore_cols = ['student_id', 'date_registration', 'date_unregistration', 'withdrew']
 
-
-    numeric_cols = df.select_dtypes(include=['int64','float64']).columns
+    numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
     numeric_features = []
-
     for col in numeric_cols:
         if col not in ignore_cols:
             numeric_features.append(col)
@@ -35,8 +32,4 @@ def build_preprocessing_pipeline(df):
         ("cat", categorical_transformer, categorical_features)
     ])
 
-<<<<<<< HEAD
     return preprocessor
-=======
-    return preprocessor
->>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0

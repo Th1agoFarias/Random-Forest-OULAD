@@ -16,15 +16,6 @@ WITH student AS (
 registration AS (
     SELECT
         id_student,
-<<<<<<< HEAD
-=======
-        MIN(date_registration) AS date_registration,
-        MAX(date_unregistration) AS date_unregistration,
-        CASE
-            WHEN MAX(date_unregistration) IS NULL THEN 0
-            ELSE 1
-        END AS withdrew,
->>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
         (MAX(date_unregistration) - MIN(date_registration)) AS days_enrolled
     FROM student_registration
     GROUP BY id_student
@@ -32,31 +23,21 @@ registration AS (
 
 assessments_summary AS (
     SELECT
-<<<<<<< HEAD
         sa.id_student,
-        COUNT(*) AS assessments,
-        AVG(score) AS score,
-        COUNT(CASE WHEN sa.date_submitted - sr.date_registration <= 14 AND sa.date_submitted - sr.date_registration >= 0 THEN 1 END) AS early_assessments
+        COUNT(*) AS num_assessments,
+        AVG(score) AS avg_score,
+        COUNT(CASE WHEN sa.date_submitted - sr.date_registration <= 14 AND sa.date_submitted - sr.date_registration >= 0 THEN 1 END) AS assessments_early
     FROM student_assessment sa
     JOIN student_registration sr ON sr.id_student = sa.id_student
     GROUP BY sa.id_student
-=======
-        id_student,
-        COUNT(*) AS num_assessments,
-        AVG(score) AS avg_score,
-        MAX(score) AS max_score
-    FROM student_assessment
-    GROUP BY id_student
->>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
 ),
 
 vle_summary AS (
     SELECT
-<<<<<<< HEAD
         sv.id_student,
-        COUNT(*) AS interactions,
-        SUM(sum_click) AS clicks,
-        SUM(CASE WHEN sv.date - sr.date_registration <= 14 AND sv.date - sr.date_registration >= 0 THEN sv.sum_click ELSE 0 END) AS early_clicks
+        COUNT(*) AS vle_interactions,
+        SUM(sum_click) AS total_clicks,
+        SUM(CASE WHEN sv.date - sr.date_registration <= 14 AND sv.date - sr.date_registration >= 0 THEN sv.sum_click ELSE 0 END) AS clicks_early
     FROM student_vle sv
     JOIN student_registration sr ON sr.id_student = sv.id_student
     GROUP BY sv.id_student
@@ -73,32 +54,12 @@ SELECT
     s.studied_credits,
     s.final_result,
     r.days_enrolled,
-    a.assessments,
-    a.score,
-    a.early_assessments,
-    v.interactions,
-    v.clicks,
-    v.early_clicks
-=======
-        id_student,
-        COUNT(*) AS num_vle_interactions,
-        SUM(sum_click) AS total_clicks
-    FROM student_vle
-    GROUP BY id_student
-)
-
-SELECT
-    s.*,
-    r.date_registration,
-    r.date_unregistration,
-    r.withdrew,
-    r.days_enrolled,
     a.num_assessments,
     a.avg_score,
-    a.max_score,
+    a.assessments_early,
     v.num_vle_interactions,
-    v.total_clicks
->>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
+    v.total_clicks,
+    v.clicks_early
 FROM student s
 LEFT JOIN registration r ON s.student_id = r.id_student
 LEFT JOIN assessments_summary a ON s.student_id = a.id_student
