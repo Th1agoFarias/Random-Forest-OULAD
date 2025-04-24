@@ -35,4 +35,8 @@ def build_preprocessing_pipeline(df):
         ("cat", categorical_transformer, categorical_features)
     ])
 
+<<<<<<< HEAD
     return preprocessor
+=======
+    return preprocessor
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0

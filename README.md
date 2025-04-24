@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 # Projeto de Análise de Evasão Estudantil
 
 Este projeto tem como objetivo analisar e prever a evasão estudantil usando técnicas de Machine Learning.
+=======
+# Pipeline de Machine Learning - Análise de Dados Educacionais
+
+Este projeto implementa um pipeline completo de Machine Learning para análise de dados educacionais, utilizando o dataset OULAD (Open University Learning Analytics Dataset).
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
 
 ## Estrutura do Projeto
 
 ```
+<<<<<<< HEAD
 .
 ├── data/                   # Dados do projeto
 ├── model/                  # Modelos treinados
@@ -76,4 +83,30 @@ jupyter notebook
 - seaborn
 - sqlalchemy
 - joblib
+=======
+aplicacaoMachineLearning/
+├── data/           # Arquivos de dados CSV
+├── src/            # Código fonte
+│   ├── main.py              # Ponto de entrada do pipeline
+│   ├── ingest_data.py       # Ingestão de dados
+│   ├── etl.py              # Transformação de dados
+│   ├── preprocessing.py    # Pré-processamento
+│   └── train_model.py      # Treinamento do modelo
+├── requirements.txt        # Dependências
+└── ingestion.json         # Configuração de ingestão
+```
+
+## Pipeline
+
+O pipeline é executado na seguinte ordem:
+
+1. **Ingestão de Dados**: Carrega os arquivos CSV para o banco de dados SQLite
+2. **ETL**: Transforma e limpa os dados
+3. **Pré-processamento**: Prepara os dados para o modelo
+4. **Treinamento**: Treina o modelo de machine learning
+
+## Requisitos
+
+- Dependências listadas em `requirements.txt`
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
 

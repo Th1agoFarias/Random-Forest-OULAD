@@ -1,19 +1,34 @@
 import pandas as pd
+<<<<<<< HEAD
 import pickle
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.pipeline import Pipeline
+=======
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+import pickle
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
 
 from preprocessing import build_preprocessing_pipeline
 from load_features import run_features
 
+<<<<<<< HEAD
 def train_model():
 
     df = run_features()
 
     df['dropout'] = df['final_result'].apply(lambda x: 1 if x == "Withdrawn" else 0)
 
+=======
+
+def train_model():
+    df = run_features()
+    df['dropout'] = df['final_result'].apply(lambda x: 1 if x == "Withdrawn" else 0)
+    
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
     X = df.drop(columns=['final_result', 'dropout'])
     y = df['dropout']
 
@@ -26,6 +41,7 @@ def train_model():
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
+<<<<<<< HEAD
     print("\nAvaliação do Modelo (Desistência):")
     print(classification_report(y_test, y_pred))
 
@@ -36,10 +52,16 @@ def train_model():
     ])
 
 
+=======
+    print("\n Avaliação do Modelo (Desistência):")
+    print(classification_report(y_test, y_pred))
+
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
     with open("model/random_forest_model.pkl", "wb") as f:
         pickle.dump(model, f)
     with open("model/preprocessor.pkl", "wb") as f:
         pickle.dump(preprocessor, f)
+<<<<<<< HEAD
     with open('model/full_pipeline.pkl', "wb") as f:
         pickle.dump(full_pipeline, f)
 
@@ -56,3 +78,11 @@ def train_model():
 if __name__ == "__main__":
     print("\nIniciando pipeline completa...")
     train_model()
+=======
+
+    print(" Modelo e pipeline salvos em 'model/'")
+
+if __name__ == "__main__":
+    print("\n Iniciando pipeline completa...")
+    train_model()
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0

@@ -16,6 +16,15 @@ WITH student AS (
 registration AS (
     SELECT
         id_student,
+<<<<<<< HEAD
+=======
+        MIN(date_registration) AS date_registration,
+        MAX(date_unregistration) AS date_unregistration,
+        CASE
+            WHEN MAX(date_unregistration) IS NULL THEN 0
+            ELSE 1
+        END AS withdrew,
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
         (MAX(date_unregistration) - MIN(date_registration)) AS days_enrolled
     FROM student_registration
     GROUP BY id_student
@@ -23,6 +32,7 @@ registration AS (
 
 assessments_summary AS (
     SELECT
+<<<<<<< HEAD
         sa.id_student,
         COUNT(*) AS assessments,
         AVG(score) AS score,
@@ -30,10 +40,19 @@ assessments_summary AS (
     FROM student_assessment sa
     JOIN student_registration sr ON sr.id_student = sa.id_student
     GROUP BY sa.id_student
+=======
+        id_student,
+        COUNT(*) AS num_assessments,
+        AVG(score) AS avg_score,
+        MAX(score) AS max_score
+    FROM student_assessment
+    GROUP BY id_student
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
 ),
 
 vle_summary AS (
     SELECT
+<<<<<<< HEAD
         sv.id_student,
         COUNT(*) AS interactions,
         SUM(sum_click) AS clicks,
@@ -60,6 +79,26 @@ SELECT
     v.interactions,
     v.clicks,
     v.early_clicks
+=======
+        id_student,
+        COUNT(*) AS num_vle_interactions,
+        SUM(sum_click) AS total_clicks
+    FROM student_vle
+    GROUP BY id_student
+)
+
+SELECT
+    s.*,
+    r.date_registration,
+    r.date_unregistration,
+    r.withdrew,
+    r.days_enrolled,
+    a.num_assessments,
+    a.avg_score,
+    a.max_score,
+    v.num_vle_interactions,
+    v.total_clicks
+>>>>>>> 5724a20343220e4ddba27d8a49be7c54464420f0
 FROM student s
 LEFT JOIN registration r ON s.student_id = r.id_student
 LEFT JOIN assessments_summary a ON s.student_id = a.id_student
