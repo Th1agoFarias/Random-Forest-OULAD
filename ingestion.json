@@ -1,0 +1,30 @@
+[
+    {
+        "path": "data/assessments.csv",
+        "table": "assessments"
+    },
+    {
+        "path": "data/courses.csv",
+        "table": "courses"
+    },
+    {
+        "path": "data/studentAssessment.csv",
+        "table": "student_assessment"
+    },
+    {
+        "path": "data/studentInfo.csv",
+        "table": "student_info"
+    },
+    {
+        "path": "data/studentRegistration.csv",
+        "table": "student_registration"
+    },
+    {
+        "path": "data/studentVle.csv",
+        "table": "student_vle"
+    },
+    {
+        "path": "data/vle.csv",
+        "table": "vle"
+    }
+] 
