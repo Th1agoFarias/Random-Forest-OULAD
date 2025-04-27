@@ -1,9 +1,9 @@
 import pandas as pd 
 import json 
 from sqlalchemy import create_engine
-import logging
+from utils import get_logger
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = get_logger(__name__)
 
 def run_igestion(json_path="ingestion.json", db_path="data/oulad.db"):
     engine = create_engine(f"sqlite:///{db_path}")
@@ -13,5 +13,5 @@ def run_igestion(json_path="ingestion.json", db_path="data/oulad.db"):
             df = pd.read_csv(table["path"])
             df.to_sql(table['path'], con=engine, if_exists="replace", index=False)
             df.to_sql(table['table'], engine, if_exists="replace", index=False)
-            logging.info(f"Table {table['table']} ingested successfully.")
+            logger.info(f"Table {table['table']} ingestão completa.")
 

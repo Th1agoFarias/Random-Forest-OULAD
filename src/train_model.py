@@ -7,6 +7,11 @@ from sklearn.pipeline import Pipeline
 
 from preprocessing import build_preprocessing_pipeline
 from load_features import run_features
+from utils import get_logger
+import os
+
+logger = get_logger(__name__)
+
 
 def train_model():
     df = run_features()
@@ -24,7 +29,9 @@ def train_model():
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
-    print(classification_report(y_test, y_pred))
+    logger.info("Modelo treinado. Resultados de avaliação:")
+    logger.info("\n" + classification_report(y_test, y_pred))
+
 
     full_pipeline = Pipeline(steps=[
         ("preprocessor", preprocessor),
@@ -45,6 +52,7 @@ def train_model():
     test_df.columns = test_df.columns.map(str)
     test_df.to_parquet("model/test_data.parquet")
 
-if __name__ == "__main__":
-    print("Iniciando pipeline completa...")
-    train_model()
+
+    logger.info("Modelos e datasets salvos com sucesso.")
+
+
