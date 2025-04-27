@@ -3,7 +3,6 @@ from load_features import run_features
 from train_model import train_model
 
 def main():
-    # 1. Ingestão dos dados
     print("Iniciando ingestão dos dados...")
     run_ingestion()
 
